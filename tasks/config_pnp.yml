@@ -1,0 +1,41 @@
+---
+# file: config_pnp.yml
+
+- stat: path=/usr/local/pnp4nagios/share/install.php.ignore
+  register: pnpignore
+
+- block:
+  - name: copy and unarchive pnp4nagios sources
+    unarchive: copy=yes src=pnp4nagios-0.6.25.tar.gz dest=/tmp
+
+  - name: configure compilation for pnp4nagios
+    command: './configure --with-httpd-conf=/etc/apache2/conf-available chdir=/tmp/pnp4nagios-0.6.25'
+
+  - name: make binaries for pnp4nagios
+    command: make all chdir=/tmp/pnp4nagios-0.6.25
+
+  - name: install pnp4nagios
+    command: make fullinstall chdir=/tmp/pnp4nagios-0.6.25
+
+  - name: configure pnp4nagios apache
+    template:
+      src=pnp4nagios.conf.j2
+      dest=/etc/apache2/conf-available/pnp4nagios.conf
+      owner=root group=root mode=0644
+
+  - name: enable pnp4nagios site
+    file: src=/etc/apache2/conf-available/pnp4nagios.conf dest=/etc/apache2/conf-enabled/pnp4nagios.conf state=link
+
+  - name: move install.php
+    command: 'mv /usr/local/pnp4nagios/share/install.php /usr/local/pnp4nagios/share/install.php.ignore'
+
+  - name: enable apache2 rewrite
+    command: 'a2enmod rewrite'
+    notify:
+      - Restart Apache
+      - Restart NPCD
+
+  - name: remove pnp4nagios sources
+    file: path=/tmp/pnp4nagios-0.6.25 state=absent
+
+  when: not pnpignore.stat.exists

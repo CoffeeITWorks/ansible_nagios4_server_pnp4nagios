@@ -1,0 +1,11 @@
+
+nagios_config_host_perfdata_file: /usr/local/pnp4nagios/var/host-perfdata
+nagios_config_service_perfdata_file: /usr/local/pnp4nagios/var/service-perfdata
+nagios_config_host_perfdata_file_template: DATATYPE::HOSTPERFDATA\tTIMET::$TIMET$\tHOSTNAME::$HOSTNAME$\tHOSTPERFDATA::$HOSTPERFDATA$\tHOSTCHECKCOMMAND::$HOSTCHECKCOMMAND$\tHOSTSTATE::$HOSTSTATE$\tHOSTSTATETYPE::$HOSTSTATETYPE$
+nagios_config_service_perfdata_file_template: DATATYPE::SERVICEPERFDATA\tTIMET::$TIMET$\tHOSTNAME::$HOSTNAME$\tSERVICEDESC::$SERVICEDESC$\tSERVICEPERFDATA::$SERVICEPERFDATA$\tSERVICECHECKCOMMAND::$SERVICECHECKCOMMAND$\tHOSTSTATE::$HOSTSTATE$\tHOSTSTATETYPE::$HOSTSTATETYPE$\tSERVICESTATE::$SERVICESTATE$\tSERVICESTATETYPE::$SERVICESTATETYPE$
+nagios_config_host_perfdata_file_mode: a
+nagios_config_service_perfdata_file_mode: a
+nagios_config_host_perfdata_file_processing_command: process-host-perfdata-file
+nagios_config_service_perfdata_file_processing_command: process-service-perfdata-file
+nagios_config_host_perfdata_file_processing_interval: 15
+nagios_config_service_perfdata_file_processing_interval: 15

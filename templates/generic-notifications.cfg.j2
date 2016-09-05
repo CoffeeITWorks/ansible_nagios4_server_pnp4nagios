@@ -1,0 +1,30 @@
+###########################################################
+# 'service-email-pnp4n-int-es' command definition, sends
+# multipart HTML e-mails, English with Nagios URL's + graph
+###########################################################
+define command{
+        command_name    service-email-pnp4n-int-es
+        command_line    /usr/bin/perl /usr/lib/nagios/plugins/pnp4n_send_service_mail.pl \
+-p "{{ nagios_server_pnp4n_email_customer }}" \
+-c "$CONTACTADDRESS1$" \
+-f graph -u -l es
+}
+
+define command{
+        command_name    host-email-pnp4n-int-es
+        command_line    /usr/bin/perl /usr/lib/nagios/plugins/pnp4n_send_host_mail.pl \
+-p "{{ nagios_server_pnp4n_email_customer }}" \
+-c "$CONTACTADDRESS1$" \
+-f graph -u -l es
+}
+
+define contact{
+	register                        0
+	name                            contact_generic
+	service_notification_period     24x7
+	host_notification_period        24x7
+	service_notification_options    w,c,r
+	host_notification_options       d,r
+	service_notification_commands   service-email-pnp4n-int-es
+	host_notification_commands      host-email-pnp4n-int-es
+}

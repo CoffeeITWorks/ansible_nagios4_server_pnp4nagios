@@ -1,0 +1,7 @@
+
+define service {
+    host_name               localhost
+    service_description     Check if NPCD is running
+    check_command           check_procs_command!1:1!1:5!npcd
+    use                     generic-service
+}

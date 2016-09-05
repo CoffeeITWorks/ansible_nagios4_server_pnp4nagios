@@ -1,0 +1,22 @@
+# file: nagios-server/handlers/main.yml
+
+- name: Restart Apache
+  service: name=apache2 state=restarted
+
+- name: Reload Apache
+  service: name=apache2 state=reloaded
+
+- name: Restart NPCD
+  supervisorctl: 
+    name: npcd 
+    state: restarted
+
+- name: restart supervisor
+  service:
+    name: supervisor
+    state: restarted
+    
+- name: Reload Nagios
+  service:
+    name: "{{ nagios_service }}"
+    state: reloaded

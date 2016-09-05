@@ -1,0 +1,4 @@
+---
+
+nagios_server_pnp4n_smpt_domain: 'yourdomain.com'
+nagios_server_pnp4n_email_customer: 'COMPANY, Address'

@@ -1,0 +1,40 @@
+---
+
+- name: lineinfile - configure nagios.cfg for pnp
+  lineinfile: dest="{{ nagios_config_file }}" regexp="{{ item.src }}" line="{{ item.value }}"
+  with_items:
+    - { src: "^host_perfdata_file_processing_command=",
+        value: "host_perfdata_file_processing_command={{ nagios_config_host_perfdata_file_processing_command }}" }
+    - { src: "^service_perfdata_file_processing_command=",
+        value: "service_perfdata_file_processing_command={{ nagios_config_service_perfdata_file_processing_command }}" }
+    - { src: "^host_perfdata_file=",
+        value: "host_perfdata_file={{ nagios_config_host_perfdata_file }}" }
+    - { src: "^service_perfdata_file=",
+        value: "service_perfdata_file={{ nagios_config_service_perfdata_file }}" }
+    - { src: "^host_perfdata_file_template=",
+        value: "host_perfdata_file_template={{ nagios_config_host_perfdata_file_template }}" }
+    - { src: "^service_perfdata_file_template=",
+        value: "service_perfdata_file_template={{ nagios_config_service_perfdata_file_template }}" }
+    - { src: "^host_perfdata_file_mode=",
+        value: "host_perfdata_file_mode={{ nagios_config_host_perfdata_file_mode }}" }
+    - { src: "^service_perfdata_file_mode=",
+        value: "service_perfdata_file_mode={{ nagios_config_service_perfdata_file_mode }}" }
+    - { src: "^host_perfdata_file_processing_interval=",
+        value: "host_perfdata_file_processing_interval={{ nagios_config_host_perfdata_file_processing_interval }}" }
+    - { src: "^service_perfdata_file_processing_interval=",
+        value: "service_perfdata_file_processing_interval={{ nagios_config_service_perfdata_file_processing_interval }}" }
+  notify: Reload Nagios
+
+- name: Configure Generic Nagios stuff
+  template:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    owner: 'root'
+    group: 'root'
+    mode: 0644
+  with_items:
+    - { src: 'pnp4nagios-commands.cfg.j2', dest: '{{ nagios_config_cfg_dir }}/pnp4nagios-commands.cfg' }
+    - { src: 'generic-host_nagios.cfg.j2', dest: '{{ nagios_config_cfg_dir }}/generic-host_nagios.cfg' }
+    - { src: 'generic-service_nagios.cfg.j2', dest: '{{ nagios_config_cfg_dir }}/generic-service_nagios.cfg' }
+    - { src: 'localhost_pnpservices.cfg.j2', dest: '{{ nagios_config_cfg_dir }}/localhost_pnpservices.cfg' }
+  notify: Reload Nagios

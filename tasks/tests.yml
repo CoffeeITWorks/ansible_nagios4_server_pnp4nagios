@@ -1,0 +1,7 @@
+---
+# file: tasks/tests.yml
+
+- name: ensure nagios is started
+  service:
+    name: "{{ nagios_service }}"
+    state: started

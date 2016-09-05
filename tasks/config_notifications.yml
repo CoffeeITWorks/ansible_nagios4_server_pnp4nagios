@@ -1,0 +1,30 @@
+---
+# file: task/config_notifications.yml
+
+- name: Install Plugins Notification dependencies
+  package:
+    name={{ item }}
+    state=present
+  with_items:
+    - libmail-sendmail-perl # send notifications
+
+- name: Configure Notification plugin
+  template: 
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    owner: 'root'
+    group: 'nagios'
+    mode: 755
+  with_items:
+    - { src: 'pnp4n_send_host_mail.pl.j2', dest: '/usr/lib/nagios/plugins/pnp4n_send_host_mail.pl' }
+    - { src: 'pnp4n_send_service_mail.pl.j2', dest: '/usr/lib/nagios/plugins/pnp4n_send_service_mail.pl' }
+
+# Could cause inestability with check-mk-livestatus when enable_environment_macros=1 is enabled
+# But notifications with graphics and usage of pnp4_send_host_mail.pl and .._service_mail.pl will not work without it.
+- name: Configure Notification command
+  template:
+    src: 'generic-notifications.cfg.j2'
+    dest: '{{ nagios_config_cfg_dir }}/generic-notifications.cfg'
+    owner: 'root'
+    group: 'root'
+    mode: 644

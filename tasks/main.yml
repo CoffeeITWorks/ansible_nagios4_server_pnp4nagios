@@ -1,0 +1,23 @@
+---
+# file: tasks/main.yml
+
+- include: multi_os.yml
+  tags:
+    - test_nagios_pnp4nagios
+
+- name: Include nagios server Variables
+  include_vars: nagios_vars.yml
+  tags:
+    - test_nagios_pnp4nagios
+
+- include: config_pnp.yml
+
+- include: config_notifications.yml
+
+- include: config_nagios.yml
+
+- include: supervisor.yml
+
+- include: tests.yml
+  tags:
+    - test_nagios_pnp4nagios
