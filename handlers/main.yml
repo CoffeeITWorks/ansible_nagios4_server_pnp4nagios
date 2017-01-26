@@ -15,6 +15,7 @@
   service:
     name: supervisor
     state: restarted
+    sleep: 5
     
 - name: Reload Nagios
   service:
