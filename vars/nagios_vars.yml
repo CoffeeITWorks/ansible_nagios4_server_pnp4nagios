@@ -7,5 +7,3 @@ nagios_config_host_perfdata_file_mode: a
 nagios_config_service_perfdata_file_mode: a
 nagios_config_host_perfdata_file_processing_command: process-host-perfdata-file
 nagios_config_service_perfdata_file_processing_command: process-service-perfdata-file
-nagios_config_host_perfdata_file_processing_interval: 15
-nagios_config_service_perfdata_file_processing_interval: 15

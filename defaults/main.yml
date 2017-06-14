@@ -2,3 +2,6 @@
 
 nagios_server_pnp4n_smpt_domain: 'yourdomain.com'
 nagios_server_pnp4n_email_customer: 'COMPANY, Address'
+
+nagios_config_host_perfdata_file_processing_interval: 120
+nagios_config_service_perfdata_file_processing_interval: 120
