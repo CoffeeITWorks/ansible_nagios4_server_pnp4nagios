@@ -75,6 +75,18 @@ License
 
 BSD
 
+Troubleshooting
+---------------
+
+Something similar to this could happen in some graphs:
+https://support.nagios.com/forum/viewtopic.php?f=7&t=46528
+
+You can delete the .rrd file for each graph you have problems or you can delete last 200 found in log, like:
+
+```
+tail -n 200 /usr/local/pnp4nagios/var/perfdata.log  | grep "update ERROR" | while read line ; do echo "$line" | cut -d" " -f 7 | tr -d ":" | xargs rm;  done
+```
+
 Author Information
 ------------------
 
