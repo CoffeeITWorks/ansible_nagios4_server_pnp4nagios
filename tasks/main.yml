@@ -10,6 +10,8 @@
   tags:
     - test_nagios_pnp4nagios
 
+- meta: flush_handlers
+
 - include: config_pnp.yml
 
 - include: config_notifications.yml
