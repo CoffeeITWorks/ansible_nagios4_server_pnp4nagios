@@ -14,7 +14,7 @@
     dest: '{{ item.dest }}'
     owner: 'root'
     group: 'nagios'
-    mode: 755
+    mode: "u=rwx,g=rx,o=rx"
   with_items:
     - { src: 'pnp4n_send_host_mail.pl.j2', dest: '/usr/lib/nagios/plugins/pnp4n_send_host_mail.pl' }
     - { src: 'pnp4n_send_service_mail.pl.j2', dest: '/usr/lib/nagios/plugins/pnp4n_send_service_mail.pl' }
@@ -27,4 +27,4 @@
     dest: '{{ nagios_config_cfg_dir }}/generic-notifications.cfg'
     owner: 'root'
     group: 'root'
-    mode: 644
+    mode: "u=rx,g=r,o=r"
