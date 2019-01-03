@@ -3,5 +3,5 @@
   hosts: all
   roles:
     - role: ansible-role-nagios
-    - role: ansible_nagios4_server_config
+    - role: coffeeitworks.ansible_nagios4_server_config
     - role: ansible_nagios4_server_pnp4nagios
