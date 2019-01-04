@@ -8,4 +8,5 @@
 - src: coffeeitworks.ansible_nagios4_server_config
 
 - src: https://github.com/CoffeeITWorks/ansible_nagios4_checkmk_livestatus.git
+  version: master
   name: nagios4_checkmk_livestatus
