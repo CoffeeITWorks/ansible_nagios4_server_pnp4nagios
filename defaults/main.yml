@@ -20,3 +20,6 @@ nagios_config_generic_host_lines:
   - 'notification_period             24x7'
   - 'notification_options            d,u,r'
   - 'contact_groups                  admins'
+
+nagios_config_welcome: 'Nagios Monitoring'
+nagios_config_sender: 'somealias@domain.com'
