@@ -12,6 +12,7 @@ Role Distribution support
 ------------------------
 
 Ubuntu: ok
+Debian: ok
 RedHat: No
 
 Role Variables
@@ -39,6 +40,10 @@ Minimum usage:
         - nagios_server_pnp4nagios
 
 ### Full list of roles:
+
+See [requirements.yml](requirements.yml) for some example on names of the roles.
+
+Most of them could be `coffeeitwork.name` instead of just name, but the example is with names simplified.
 
 ``` yaml
 - name: apply Nagios settings
