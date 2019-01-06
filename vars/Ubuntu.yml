@@ -5,6 +5,7 @@
 
 nagios_etc: '/usr/local/nagios/etc'
 nagios_config_cfg_dir: "{{ nagios_etc }}/conf.d"
+nagios_config_cfg_plugins: "{{ nagios_config_cfg_dir }}/plugins"
 
 nagios_version: 4
 nagios_service: nagios
