@@ -43,7 +43,7 @@ Minimum usage:
 
 See [requirements.yml](requirements.yml) for some example on names of the roles.
 
-Most of them could be `coffeeitwork.name` instead of just name, but the example is with names simplified.
+Most of them could be `coffeeitworks.name` instead of just name, but the example is with names simplified.
 
 ``` yaml
 - name: apply Nagios settings
