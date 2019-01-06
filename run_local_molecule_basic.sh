@@ -8,14 +8,14 @@ docker run --rm -it --privileged=True \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -w /tmp/$(basename "${PWD}") \
     retr0h/molecule:latest \
-    sudo molecule --debug syntax
+    molecule --debug syntax -s local
 
 docker run --rm -it --privileged=True \
     -v "$(pwd)":/tmp/$(basename "${PWD}"):ro \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -w /tmp/$(basename "${PWD}") \
     retr0h/molecule:latest \
-    sudo molecule --debug create
+    molecule --debug create -s local
 
 
 docker run --rm -it --privileged=True \
@@ -23,4 +23,7 @@ docker run --rm -it --privileged=True \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -w /tmp/$(basename "${PWD}") \
     retr0h/molecule:latest \
-    sudo molecule converge
+    molecule converge -s local
+
+# local scenario is used in this case
+
