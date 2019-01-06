@@ -38,3 +38,14 @@
     - { src: 'generic-service_nagios.cfg.j2', dest: '{{ nagios_config_cfg_dir }}/generic-service_nagios.cfg' }
     - { src: 'localhost_pnpservices.cfg.j2', dest: '{{ nagios_config_cfg_dir }}/localhost_pnpservices.cfg' }
   notify: Reload Nagios
+
+- name: configure the commands for plugins
+  template:
+    src: "{{ item }}"
+    dest: '{{ nagios_config_cfg_plugins }}/{{ item | basename | regex_replace("\.j2","") }}'
+    owner: 'nagios'
+    group: 'nagios'
+    mode: "u=rw,g=r,o=r"
+  with_fileglob:
+    - ../templates/commands/*
+  notify: Reload Nagios
