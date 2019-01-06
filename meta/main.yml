@@ -13,5 +13,5 @@ galaxy_info:
   - Infraestructure
 allow_duplicates: no
 dependencies:
-  - role: nagios4_checkmk_livestatus
+  - role: coffeeitworks.ansible_nagios4_checkmk_livestatus
     tags: ["install", "nagios_server_all", "nagios_server"]
