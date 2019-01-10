@@ -3,14 +3,19 @@ galaxy_info:
   author: Diego Daguerre, Pablo Estigarribia
   description: Install pnp4nagios graphs, modified the emails to be sent with graphs prepared to be compatible with thruk, nagios_plugins
   license: GPLv2
-  min_ansible_version: 2.0
+  min_ansible_version: 2.5
   platforms:
   - name: Ubuntu
     versions:
     - trusty
+    - xenial
+    - bionic
+  - name: Debian
+    version:
+    - all
   galaxy_tags:
-  - Monitoring
-  - Infraestructure
+  - monitoring
+  - infraestructure
 allow_duplicates: no
 dependencies:
   - role: coffeeitworks.ansible_nagios4_checkmk_livestatus
