@@ -1,7 +1,7 @@
 ---
 # file: tasks/main.yml
 
-- include: multi_os.yml
+- import_tasks: multi_os.yml
   tags:
     - test_nagios_pnp4nagios
 
@@ -10,16 +10,16 @@
   tags:
     - test_nagios_pnp4nagios
 
-- include: config_pnp.yml
+- import_tasks: config_pnp.yml
 
-- include: config_notifications.yml
+- import_tasks: config_notifications.yml
 
-- include: config_nagios.yml
+- import_tasks: config_nagios.yml
 
-- include: supervisor.yml
+- import_tasks: supervisor.yml
 
 - meta: flush_handlers
 
-- include: tests.yml
+- import_tasks: tests.yml
   tags:
     - test_nagios_pnp4nagios
